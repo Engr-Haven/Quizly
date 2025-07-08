@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="general-container">
+        <div class="header-section" id="header-section">
+            <!-- <h3>Welcome, User!</h3> -->
+        </div>
+        <div class="intro-section-cont">
+            <div class="bg-form-container">
+                <div class="bg-cont">
+                    <!-- background goes here... -->
+                </div>
+                <form class="user-form" id="user-form">
+                    <label for="gamename">Enter your Game Name:</label>
+                    <input type="text" id="gamename" name="gamename" placeholder="Enter your game name here...">
+                    <button type="submit">Enter</button>
+                </form>
+            </div>
+            <div class="ai-cont" id="ai-cont">
+                <!-- <p id="ai-greet">We have carefully picked these questions for you. We hope you enjoy the game. <span>Gooduck, User!</span></p> -->
+                <!-- <button id="start-game-btn">Start Quiz</button> -->
+            </div>
+        </div>
+
+      <!-- Modal Section goes here... -->
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal-section">
+                <div class="close-modal">
+                    <i class="fa-solid fa-circle-xmark" id="closeQns"></i>
+                </div>
+                <div class="ques-ans-div" id="ques-ans-div">
+                    <!-- <div class="question-counter" id="question-counter">
+                        I might remove the question counter though
+                    </div> -->
+                    <div class="question-container" id="question-container">
+                        <!-- h1 Questions goes here... -->
+                    </div>
+                    <div class="answers-container" id="answers-container">
+                        <!-- h1 Answers options goes here... -->
+                    </div>
+                    <button class="next-btn" id="next-btn">Next Question</button>
+                </div>
+
+                <!-- Result screen here... this will mostly be hidden though and shown when the game is completed!-->
+                <div class="result-cont" id="result-cont">
+                    <h2>Quiz Game Complete!</h2>
+                    <div class="final-score" id="final-score">
+                        <!-- h1 final score goes here -->
+                    </div>
+                    <div class="msg-score" id="msg-score">
+                        <!-- h1 Message based on score goes here -->
+                    </div>
+                    <button class="reload-btn" id="reload-btn">Take Quiz Again</button>
+                </div>
+            </div>
+        </div>
+        <!-- Footer section will come here later. -->
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
