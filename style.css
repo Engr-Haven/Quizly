@@ -379,6 +379,10 @@
 /* Media Quaries >>> Mobile screen */
 
 @media screen and (max-width: 480px){  
+    body{
+        background-color: #f5f5f5;
+    }
+
     .general-container{
     width: 100%;
     height: 100vh;
