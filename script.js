@@ -11,12 +11,44 @@ let nextBtn = document.querySelector(`#next-btn`)
 let resultDiv = document.querySelector(`#result-cont`)
 let finalScoreDiv = document.querySelector(`#final-score`)
 let msgScoreDiv = document.querySelector(`#msg-score`)
+let quizTimer = document.querySelector(`#quiz-timer`)
 
+
+// For the timer >>>
+let timeDurationForQuiz = 30;
+let quizTimerInterval; // Declare the variable globally
+
+// the function that works the timer >>>
+function startTimerQuiz() {
+  timeDurationForQuiz = 30; // Reset timer to 30 seconds
+  quizTimer.textContent = `Time left: ${timeDurationForQuiz}s`;
+
+  quizTimerInterval = setInterval(() => {
+    timeDurationForQuiz--;
+    quizTimer.textContent = `Time left: ${timeDurationForQuiz}s`;
+    if (timeDurationForQuiz <= 0) {
+      clearInterval(quizTimerInterval);
+      quizTimer.textContent = `Time is up!`;
+      // Show results when time is up
+      showResults();
+    }
+  }, 1000); // Update every second
+}
+
+// To stop the timer when the modal is closed >>>
+function stopTimerQuizAtInstant() {
+  clearInterval(quizTimerInterval);
+  quizTimer.textContent = `Wow! You finished at ${timeDurationForQuiz} seconds!` // Display the time left when the quiz ends
+}
+
+
+// declaring the variable that will store the user's game name >>>
+let userGameName = ``;
 
 userForm.addEventListener(`submit`, userMsgWelcome)
 function userMsgWelcome(e) {
   e.preventDefault()
-  let userGameName = gameNameInput.value.trim()
+  userGameName = gameNameInput.value.trim()
 
   if (!gameNameInput.value.trim()) {
     alert(`Please enter your name to start the game.`)
@@ -34,6 +66,8 @@ function userMsgWelcome(e) {
       questionsPopUp.classList.remove(`modal-overlay`)
       questionsPopUp.classList.add(`modal-overlay-visible`)
       questionsPopUp.style.display = `flex`
+
+      startTimerQuiz() // <<< Start the quiz timer when the modal is opened
 
       // Reset quiz state and shuffle questions
       currentQuestionIndex = 0
@@ -221,6 +255,7 @@ function nextQuestion() {
     loadQuestion()
   } else {
     showResults()
+    stopTimerQuizAtInstant()  // <<<Stop the timer when results are shown
   }
 }
 
@@ -229,7 +264,7 @@ function showResults() {
   answersDiv.innerHTML = ``
   resultDiv.innerHTML = `<h2>Quiz Game Completed!</h2>`
   let finalScoreHeading = document.createElement(`h1`)
-  finalScoreHeading.textContent = `Your score is ${myScore} out of ${totalQuestions}`
+  finalScoreHeading.textContent = `${userGameName}, your score is ${myScore} out of ${totalQuestions}`
 
   //Append here >>>
   finalScoreDiv.append(finalScoreHeading)
